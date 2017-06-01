@@ -61,7 +61,10 @@ namespace AstralTask
             MatchCollection matches = Regex.Matches(html, str);
             foreach (Match match in matches)
             {
-                comboBox1.Items.Add(match.Value);
+                var stroka = match.Value;
+                var gg = stroka.Substring(stroka.IndexOf("title=\"") + 6);
+                comboBox1.Items.Add(gg);
+                textBox1.AppendText(gg);
             }
         }
 
