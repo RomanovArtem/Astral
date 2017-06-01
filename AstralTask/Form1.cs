@@ -28,21 +28,30 @@ namespace AstralTask
             var html = GetHTMLPageText(a, b);
             html = Regex.Replace(html, @"\s+", " ");    
 
-            WriteFile(html);
+           // WriteFile(html);
             ParseHTML(html);
-
         }
 
 
         public string GetHTMLPageText(string url, Encoding encoding)
         {
             var client = new WebClient();
-            using (var data = client.OpenRead(url))
+            try
             {
-                using (var reader = new StreamReader(data, encoding))
+                using (var data = client.OpenRead(url))
                 {
-                    return reader.ReadToEnd();
+                    using (var reader = new StreamReader(data, encoding))
+                    {
+                        MessageBox.Show(String.Format("Загрузка вакансий с сайта прошла успешно"));
+                        button2.Visible = true;
+                        return reader.ReadToEnd();
+                    }
                 }
+            }
+            catch
+            {
+                MessageBox.Show(String.Format("Ошибка при загрузке вакансий с сайта!"));
+                return "";
             }
         }
 
@@ -68,21 +77,17 @@ namespace AstralTask
             }
         }
 
-      /*  public string SubStrDel(String html)
-        {
-            var substr = "
-                           ";
-            int n = html.IndexOf(substr);
-            str.Remove(n, substr.Length);
-            return str;
-        }*/
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }
