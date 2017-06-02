@@ -26,9 +26,9 @@ namespace AstralTask
             var b = Encoding.UTF8;
             //textBox1.AppendText(GetHTMLPageText(a, b));
             var html = GetHTMLPageText(a, b);
-            html = Regex.Replace(html, @"\s+", " ");    
+            html = Regex.Replace(html, @"\s+", " ");
 
-           // WriteFile(html);
+            // WriteFile(html);
             ParseHTML(html);
         }
 
@@ -65,7 +65,6 @@ namespace AstralTask
         public void ParseHTML(string html)
         {
             string a = "<a class=\"list-vacancies__title\" target=\"_blank\" href=\"/vacancy/(.*?)/\" title=\"(.*?)\"";
-            textBox1.AppendText(a);
             string str = Regex.Unescape(a);
             MatchCollection matches = Regex.Matches(html, str);
             foreach (Match match in matches)
@@ -89,12 +88,17 @@ namespace AstralTask
 
         private void button2_Click(object sender, EventArgs e)
         {
+            textBox1.Clear();
+            string a = "hello, привет";
+            new DataBase().WriteDB(a);
 
+            var strok = new DataBase().GetVacancyTitle();
+            textBox1.AppendText(strok);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var sqlConnection = new DataBaseReader()._sqlConnection;
+            var sqlConnection = new DataBase()._sqlConnection;
             if (sqlConnection != null && sqlConnection.State != ConnectionState.Closed)
                 sqlConnection.Close();
             Close();
@@ -102,8 +106,17 @@ namespace AstralTask
 
         private void button4_Click(object sender, EventArgs e)
         {
-            var strok = new DataBaseReader().GetVacancyTitle();
+            textBox1.Clear();
+            var strok = new DataBase().GetVacancyTitle();
             textBox1.AppendText(strok);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var sqlConnection = new DataBase()._sqlConnection;
+            if (sqlConnection != null && sqlConnection.State != ConnectionState.Closed)
+                sqlConnection.Close();
+            Close();
         }
     }
 }

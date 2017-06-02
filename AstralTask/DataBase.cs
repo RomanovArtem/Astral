@@ -8,11 +8,11 @@ using System.Windows.Forms;
 
 namespace AstralTask
 {
-    class DataBaseReader
+    class DataBase
     {
         public SqlConnection _sqlConnection;
 
-        public DataBaseReader()
+        public DataBase()
         {
             var connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\ArtemRomanov\documents\visual studio 2015\Projects\AstralTask\AstralTask\Database.mdf";
             _sqlConnection = new SqlConnection(connectionString);
@@ -42,7 +42,13 @@ namespace AstralTask
                     sqlDataReader.Close();
             }
             return a;
+        }
 
+        public void WriteDB(string title)
+        {
+            var command = new SqlCommand("INSERT INTO[Vacancy] (title)Values(@title)", _sqlConnection);
+            command.Parameters.AddWithValue("title", title);
+            command.ExecuteNonQuery();
         }
     }
 }
