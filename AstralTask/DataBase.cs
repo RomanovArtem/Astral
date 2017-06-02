@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +16,8 @@ namespace AstralTask
 
         public DataBase()
         {
-            var connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\ArtemRomanov\documents\visual studio 2015\Projects\AstralTask\AstralTask\Database.mdf";
+            var locationDB = Application.StartupPath + @"\Database.mdf";
+            var connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + locationDB;
             _sqlConnection = new SqlConnection(connectionString);
             _sqlConnection.Open();
         }
