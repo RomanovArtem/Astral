@@ -78,7 +78,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(504, 242);
+            this.button3.Location = new System.Drawing.Point(546, 360);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 4;
@@ -88,11 +88,11 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(503, 142);
+            this.button4.Location = new System.Drawing.Point(435, 197);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(186, 23);
             this.button4.TabIndex = 5;
-            this.button4.Text = "Загрузка";
+            this.button4.Text = "Посмотреть вакансии в БД";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 

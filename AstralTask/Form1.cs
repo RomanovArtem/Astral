@@ -9,6 +9,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace AstralTask
@@ -22,38 +23,13 @@ namespace AstralTask
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var a = "https://www.rabota.ru/vacancy";
-            var b = Encoding.UTF8;
-            //textBox1.AppendText(GetHTMLPageText(a, b));
-            var html = GetHTMLPageText(a, b);
+            var html = new Html().GetHtmlPageText();
             html = Regex.Replace(html, @"\s+", " ");
-
-            // WriteFile(html);
             ParseHTML(html);
         }
 
 
-        public string GetHTMLPageText(string url, Encoding encoding)
-        {
-            var client = new WebClient();
-            try
-            {
-                using (var data = client.OpenRead(url))
-                {
-                    using (var reader = new StreamReader(data, encoding))
-                    {
-                        MessageBox.Show(String.Format("Загрузка вакансий с сайта прошла успешно"));
-                        button2.Visible = true;
-                        return reader.ReadToEnd();
-                    }
-                }
-            }
-            catch
-            {
-                MessageBox.Show(String.Format("Ошибка при загрузке вакансий с сайта!"));
-                return "";
-            }
-        }
+       
 
         public void WriteFile(string s)
         {
@@ -67,12 +43,19 @@ namespace AstralTask
             string a = "<a class=\"list-vacancies__title\" target=\"_blank\" href=\"/vacancy/(.*?)/\" title=\"(.*?)\"";
             string str = Regex.Unescape(a);
             MatchCollection matches = Regex.Matches(html, str);
+           
+            var listTitle = new List<string>();
             foreach (Match match in matches)
             {
                 var stroka = match.Value;
                 var gg = stroka.Substring(stroka.IndexOf("title=\"") + 6);
-                comboBox1.Items.Add(gg);
-                textBox1.AppendText(gg);
+                listTitle.Add(gg);
+                //comboBox1.Items.Add(gg);
+               // textBox1.AppendText(gg);
+            }
+            foreach (var list in listTitle)
+            {
+                textBox1.AppendText(list);
             }
         }
 
