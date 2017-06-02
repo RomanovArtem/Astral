@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -41,11 +42,16 @@ namespace AstralTask
             return html;
         }
 
-        public void WriteDB(string title)
+        public void WriteDataDb(List<string> listTitle)
         {
-            var command = new SqlCommand("INSERT INTO[Vacancy] (title)Values(@title)", _sqlConnection);
-            command.Parameters.AddWithValue("title", title);
-            command.ExecuteNonQuery();
-        }
+           
+            foreach (var list in listTitle)
+            {
+                var command = new SqlCommand("INSERT INTO[Vacancy] (title)Values(@title)", _sqlConnection);
+                command.Parameters.AddWithValue("title", list);
+                command.ExecuteNonQuery();
+            }
+        } 
+
     }
 }

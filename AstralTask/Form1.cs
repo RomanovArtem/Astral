@@ -9,7 +9,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Collections.Generic;
+
 using System.Windows.Forms;
 
 namespace AstralTask
@@ -21,44 +21,15 @@ namespace AstralTask
             InitializeComponent();
         }
 
+        private string _html;
         private void button1_Click(object sender, EventArgs e)
         {
-            var html = new Html().GetHtmlPageText();
-            html = Regex.Replace(html, @"\s+", " ");
-            ParseHTML(html);
+            var htmlWorker = new HtmlWorker();
+            _html = htmlWorker.GetHtmlPageText();
+            button2.Visible = true;
+
         }
-
-
        
-
-        public void WriteFile(string s)
-        {
-            StreamWriter SW = new StreamWriter(new FileStream("FileName.txt", FileMode.Create, FileAccess.Write));
-            SW.Write(s);
-            SW.Close();
-        }
-
-        public void ParseHTML(string html)
-        {
-            string a = "<a class=\"list-vacancies__title\" target=\"_blank\" href=\"/vacancy/(.*?)/\" title=\"(.*?)\"";
-            string str = Regex.Unescape(a);
-            MatchCollection matches = Regex.Matches(html, str);
-           
-            var listTitle = new List<string>();
-            foreach (Match match in matches)
-            {
-                var stroka = match.Value;
-                var gg = stroka.Substring(stroka.IndexOf("title=\"") + 6);
-                listTitle.Add(gg);
-                //comboBox1.Items.Add(gg);
-               // textBox1.AppendText(gg);
-            }
-            foreach (var list in listTitle)
-            {
-                textBox1.AppendText(list);
-            }
-        }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -68,15 +39,14 @@ namespace AstralTask
         {
 
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
-            textBox1.Clear();
-            string a = "hello, привет";
-            new DataBase().WriteDB(a);
+            var listTitles = new HtmlWorker().ParseHtml(_html);
+            new DataBase().WriteDb(listTitles);
 
-            var strok = new DataBase().GetVacancyTitle();
-            textBox1.AppendText(strok);
+
+           // var strok = new DataBase().GetVacancyTitle();
+           // textBox1.AppendText(strok);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -90,8 +60,8 @@ namespace AstralTask
         private void button4_Click(object sender, EventArgs e)
         {
             textBox1.Clear();
-            var strok = new DataBase().GetVacancyTitle();
-            textBox1.AppendText(strok);
+            var databaseInformation = new DataBase().GetVacancyTitle();
+            textBox1.AppendText(databaseInformation);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -100,6 +70,11 @@ namespace AstralTask
             if (sqlConnection != null && sqlConnection.State != ConnectionState.Closed)
                 sqlConnection.Close();
             Close();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
