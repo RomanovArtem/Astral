@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AstralTask
@@ -12,7 +9,7 @@ namespace AstralTask
         /// Главная точка входа для приложения.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Maтin()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

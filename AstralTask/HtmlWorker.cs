@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -10,7 +9,7 @@ using System.Windows.Forms;
 
 namespace AstralTask
 {
-    class HtmlWorker
+    internal class HtmlWorker
     {
         private readonly string _url;
         private readonly Encoding _encoding;
@@ -24,22 +23,23 @@ namespace AstralTask
         public string GetHtmlPageText()
         {
             var client = new WebClient();
+            var html = "";
             try
             {
                 using (var data = client.OpenRead(_url))
                 {
-                    using (var reader = new StreamReader(data, _encoding))
-                    {
-                        MessageBox.Show(@"Загрузка вакансий с сайта прошла успешно");
-                        return reader.ReadToEnd();
-                    }
+                    if (data != null)
+                        using (var reader = new StreamReader(data, _encoding))
+                        {
+                            html = reader.ReadToEnd();
+                        }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return "";
             }
+            return html;
         }
 
         public List<string> ParseHtml(string html)
@@ -51,11 +51,9 @@ namespace AstralTask
             var listTitles = new List<string>();
             foreach (Match match in matches)
             {
-                var stroka = match.Value;
-                var gg = stroka.Substring(stroka.IndexOf("title=\"", StringComparison.Ordinal) + 6);
-                listTitles.Add(gg);
+                var titleVacancy = match.Value.Substring(match.Value.IndexOf("title=\"", StringComparison.Ordinal) + 6);
+                listTitles.Add(titleVacancy);
             }
-           // new DataBase().WriteDb(listTitle);
             return listTitles;
         }
 

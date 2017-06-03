@@ -7,7 +7,7 @@ namespace AstralTask
 {
     class DataBase
     {
-        public SqlConnection _sqlConnection;
+        private readonly SqlConnection _sqlConnection;
 
         public DataBase()
         {
@@ -25,9 +25,11 @@ namespace AstralTask
             try
             {
                 sqlDataReader = command.ExecuteReader();
+                var count = 0;
                 while (sqlDataReader.Read())
                 {
-                    html += Convert.ToString(sqlDataReader["id"]) + " " + Convert.ToString(sqlDataReader["title"]) + "\r\n";
+                    count++;
+                    html += count + " " + Convert.ToString(sqlDataReader["title"]) + "\r\n";
                 }
             }
             catch (Exception ex)
@@ -51,7 +53,12 @@ namespace AstralTask
                 command.Parameters.AddWithValue("title", list);
                 command.ExecuteNonQuery();
             }
-        } 
+        }
 
+        public void DeleteDataDb()
+        {
+            var command = new SqlCommand("DELETE FROM[Vacancy]", _sqlConnection);
+            command.ExecuteNonQuery();
+        }
     }
 }
