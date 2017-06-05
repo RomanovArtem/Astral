@@ -9,7 +9,7 @@ namespace AstralTask
         /// Главная точка входа для приложения.
         /// </summary>
         [STAThread]
-        private static void Maтin()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
