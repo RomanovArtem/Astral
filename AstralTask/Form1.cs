@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace AstralTask
 {
@@ -15,6 +17,12 @@ namespace AstralTask
             InitializeComponent();
         }
 
+        public void WriteFile(string s)
+        {
+            StreamWriter SW = new StreamWriter(new FileStream("FileName.txt", FileMode.Create, FileAccess.Write));
+            SW.Write(s);
+            SW.Close();
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -25,10 +33,22 @@ namespace AstralTask
               
                 var result = client.GetAsync("/vacancies").Result;
                 string resultContent = result.Content.ReadAsStringAsync().Result;
-                textBox1.AppendText(resultContent);
+             //   textBox1.AppendText(resultContent);
+                WriteFile(resultContent);
 
-                var data = JsonConvert.
-                
+                var newObject = JsonConvert.DeserializeObject<RootObject>(resultContent);
+                var b = "Как -то так: ";
+                foreach (var item in newObject.items)
+                {
+                    b += item.name + "\t\n";
+                }
+                textBox1.AppendText(b);
+                /// Dictionary<string, object> vacancy = (Dictionary<string, object>) serializer
+                /* var data = JsonConvert.DeserializeObject<Roto>(resultContent);
+                 if (!data.response)
+                 {
+                     
+                 } */
             }
 
 
