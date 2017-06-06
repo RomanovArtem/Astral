@@ -113,7 +113,19 @@ namespace AstralTask
 
     public class RootObject
     {
-        public object clusters { get; set; }
+        public object clusters
+        {
+            get
+            {
+                if (clusters == null)
+                {
+                    return "";
+                }
+                return clusters;
+            }
+            set {}
+        }
+
         public List<Item> items { get; set; }
         public int pages { get; set; }
         public List<Argument> arguments { get; set; }

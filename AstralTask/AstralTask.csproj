@@ -74,7 +74,7 @@
     </Compile>
     <Compile Include="HeadHunterCoder.cs" />
     <Compile Include="HtmlWorker.cs" />
-    <Compile Include="MyClass.cs" />
+    <Compile Include="RootObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

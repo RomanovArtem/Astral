@@ -42,31 +42,19 @@ namespace AstralTask
                 var count = 0;
                 foreach (var item in newObject.items)
                 {
-                    b += ++count + item.alternate_url + Environment.NewLine;
-                    //b += ++count + item.alternate_url + Environment.NewLine;
+                    var title = item.name;
+                    var salary =  " - ";
+                    var employer = ""; //item.employer.name;
+                    var url = item.alternate_url;
+                    var requirement = ""; //item.snippet.requirement;
+                    var responsibility = ""; //item.snippet.responsibility;
+                    var address = ""; //item.address.city + " " + item.address.street + " " + item.address.raw;
+                    new DataBase().WriteDataDb(title, salary, employer, url, requirement, responsibility, address);
+                    textBox1.AppendText(++count + " " + title + " "  + url + Environment.NewLine);
                 }
-                textBox1.AppendText(b);
-                // Dictionary<string, object> vacancy = (Dictionary<string, object>) serializer
-                /* var data = JsonConvert.DeserializeObject<Roto>(resultContent);
-                 if (!data.response)
-                 {
-                     
-                 } */
+
+                textBox1.AppendText("dвсе");
             }
-
-
-            /*var htmlWorker = new HtmlWorker();
-            _html = htmlWorker.GetHtmlPageText();
-            label1.Text = _html != "" ? @"Данные загружены с сайта https://www.rabota.ru/vacancy" : @"Ошибка загрузки данных с сайта https://www.rabota.ru/vacancy";
-            
-            button2.Visible = true;
-
-            _listTitles = new HtmlWorker().ParseHtml(_html);
-            textBox1.Clear();
-            foreach (var title in _listTitles)
-            {
-                textBox1.AppendText(title + "\t\n");
-            } */
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -76,7 +64,7 @@ namespace AstralTask
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new DataBase().WriteDataDb(_listTitles);
+            //new DataBase().WriteDataDb(TODO, TODO, TODO, TODO, TODO, TODO, TODO);
             textBox1.Clear();
             label1.Text = @"Данные сохранены в БД";
 
