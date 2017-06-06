@@ -29,12 +29,13 @@ namespace AstralTask
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://api.hh.ru");
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "M0ULRI6D64B9JQNTM26TFSNUILLMM7AKESA7V3N5BP3TALLM5UR7140697AQ46BR");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",
+                    "M0ULRI6D64B9JQNTM26TFSNUILLMM7AKESA7V3N5BP3TALLM5UR7140697AQ46BR");
                 client.DefaultRequestHeaders.Add("User-Agent", "api-test-agent");
-              
+
                 var result = client.GetAsync("/vacancies?describe_arguments=true&area=1&per_page=50").Result;
                 string resultContent = result.Content.ReadAsStringAsync().Result;
-             //   textBox1.AppendText(resultContent);
+                //   textBox1.AppendText(resultContent);
                 WriteFile(resultContent);
 
                 var newObject = JsonConvert.DeserializeObject<RootObject>(resultContent);
@@ -51,15 +52,15 @@ namespace AstralTask
                     var requirement = item.snippet.requirement ?? "Не указаны";
                     var responsibility = item.snippet.responsibility ?? "Не указаны";
                     var address = item.address == null || (item.address.city == null && item.address.street == null &&
-                                                       item.address.raw == null)
+                                                           item.address.raw == null)
                         ? "Не указан"
                         : item.address.city + " " + item.address.street;
 
-                    //new DataBase().WriteDataDb(title, salary, employer, url, requirement, responsibility, address);
-                    textBox1.AppendText(++count + " "+ address + Environment.NewLine);
+                    new DataBase().WriteDataDb(title, salary, employer, url, requirement, responsibility, address);
+                    textBox1.AppendText(++count + " " + title + " " + salary + " " + employer + " " + url + " " +
+                                        requirement + " " + responsibility + " " + address + Environment.NewLine);
                 }
-
-                textBox1.AppendText("dвсе");
+                label1.Text = @"Данные добавлены";
             }
         }
 

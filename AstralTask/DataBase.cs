@@ -62,12 +62,12 @@ namespace AstralTask
                         _sqlConnection))
                 {
                     command.Parameters.AddWithValue("title", title);
-                    command.Parameters.AddWithValue("salary", title);
-                    command.Parameters.AddWithValue("employer", title);
+                    command.Parameters.AddWithValue("salary", salary);
+                    command.Parameters.AddWithValue("employer", employer);
                     command.Parameters.AddWithValue("url", url);
-                    command.Parameters.AddWithValue("requirement", title);
-                    command.Parameters.AddWithValue("responsibility", title);
-                    command.Parameters.AddWithValue("address", title);
+                    command.Parameters.AddWithValue("requirement", requirement);
+                    command.Parameters.AddWithValue("responsibility", responsibility);
+                    command.Parameters.AddWithValue("address", address);
                     command.ExecuteNonQuery();
                 }
             }
@@ -80,7 +80,7 @@ namespace AstralTask
 
         public void DeleteDataDb()
         {
-            var command = new SqlCommand("DELETE FROM[Vacancy]", _sqlConnection);
+            var command = new SqlCommand("DELETE FROM Vacancy", _sqlConnection);
             command.ExecuteNonQuery();
         }
     }
