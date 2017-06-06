@@ -11,10 +11,17 @@ namespace AstralTask
 
         public DataBase()
         {
-            var locationDb = Application.StartupPath + @"\Database.mdf";
-            var connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + locationDb;
-            _sqlConnection = new SqlConnection(connectionString);
-            _sqlConnection.Open();
+            try
+            {
+                var locationDb = Application.StartupPath + @"\Database.mdf";
+                var connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + locationDb;
+                _sqlConnection = new SqlConnection(connectionString);
+                _sqlConnection.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public string GetVacancyTitle()
