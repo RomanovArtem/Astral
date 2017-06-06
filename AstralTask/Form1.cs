@@ -31,16 +31,17 @@ namespace AstralTask
                 client.BaseAddress = new Uri("https://api.hh.ru");
                 client.DefaultRequestHeaders.Add("User-Agent", "api-test-agent");
               
-                var result = client.GetAsync("/vacancies").Result;
+                var result = client.GetAsync("/vacancies?areas=1&per_page=50").Result;
                 string resultContent = result.Content.ReadAsStringAsync().Result;
              //   textBox1.AppendText(resultContent);
                 WriteFile(resultContent);
 
                 var newObject = JsonConvert.DeserializeObject<RootObject>(resultContent);
-                var b = "Как -то так: ";
+                var b = "";
+                var count = 0;
                 foreach (var item in newObject.items)
                 {
-                    b += item.name + "\t\n";
+                    b += ++count + item.name + Environment.NewLine;
                 }
                 textBox1.AppendText(b);
                 /// Dictionary<string, object> vacancy = (Dictionary<string, object>) serializer
