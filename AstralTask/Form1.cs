@@ -20,23 +20,15 @@ namespace AstralTask
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://api.hh.ru/vacancies");
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "r.000000010000001.example.access_token");
+                client.BaseAddress = new Uri("https://api.hh.ru");
                 client.DefaultRequestHeaders.Add("User-Agent", "api-test-agent");
               
-                var result = client.GetAsync("").Result;
+                var result = client.GetAsync("/vacancies").Result;
                 string resultContent = result.Content.ReadAsStringAsync().Result;
                 textBox1.AppendText(resultContent);
-                //string resultContent = result..ReadAsStringAsync();
-                /*client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Add("X-Api-App-Id", "v1.r0779698b7fbc3625b76f2182debdc75f2f107076e6d1e1891e88bd775757f150bf491429.ee229693a8638c3fa20687f6749b9ee124c8b601");
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "r.000000010000001.example.access_token");
-                client.DefaultRequestHeaders.Add("Content-Type", "application/x-www-form-urlencoded");
-                using (StringContent cont = new StringContent(json))
-                {
-                    
-                }
-                var response = client.PostAsync("rest/message", ).Result;*/
+
+                var data = JsonConvert.
+                
             }
 
 
