@@ -29,9 +29,10 @@ namespace AstralTask
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://api.hh.ru");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "M0ULRI6D64B9JQNTM26TFSNUILLMM7AKESA7V3N5BP3TALLM5UR7140697AQ46BR");
                 client.DefaultRequestHeaders.Add("User-Agent", "api-test-agent");
               
-                var result = client.GetAsync("/vacancies?areas=1&per_page=50").Result;
+                var result = client.GetAsync("/vacancies?describe_arguments=true&area=1&per_page=50").Result;
                 string resultContent = result.Content.ReadAsStringAsync().Result;
              //   textBox1.AppendText(resultContent);
                 WriteFile(resultContent);
@@ -41,10 +42,11 @@ namespace AstralTask
                 var count = 0;
                 foreach (var item in newObject.items)
                 {
-                    b += ++count + item.name + Environment.NewLine;
+                    b += ++count + item.alternate_url + Environment.NewLine;
+                    //b += ++count + item.alternate_url + Environment.NewLine;
                 }
                 textBox1.AppendText(b);
-                /// Dictionary<string, object> vacancy = (Dictionary<string, object>) serializer
+                // Dictionary<string, object> vacancy = (Dictionary<string, object>) serializer
                 /* var data = JsonConvert.DeserializeObject<Roto>(resultContent);
                  if (!data.response)
                  {

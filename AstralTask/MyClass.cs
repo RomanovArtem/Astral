@@ -29,8 +29,8 @@ namespace AstralTask
     public class LogoUrls
     {
         public string __invalid_name__90 { get; set; }
-        public string __invalid_name__240 { get; set; }
         public string original { get; set; }
+        public string __invalid_name__240 { get; set; }
     }
 
     public class Employer
@@ -61,7 +61,7 @@ namespace AstralTask
         public object description { get; set; }
         public Metro metro { get; set; }
         public List<object> metro_stations { get; set; }
-        public object raw { get; set; }
+        public string raw { get; set; }
         public string street { get; set; }
         public double? lat { get; set; }
         public double? lng { get; set; }
@@ -96,12 +96,27 @@ namespace AstralTask
         public string id { get; set; }
     }
 
+    public class ClusterGroup
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+    }
+
+    public class Argument
+    {
+        public string disable_url { get; set; }
+        public ClusterGroup cluster_group { get; set; }
+        public string argument { get; set; }
+        public string value { get; set; }
+        public string value_description { get; set; }
+    }
+
     public class RootObject
     {
         public object clusters { get; set; }
         public List<Item> items { get; set; }
         public int pages { get; set; }
-        public object arguments { get; set; }
+        public List<Argument> arguments { get; set; }
         public int found { get; set; }
         public string alternate_url { get; set; }
         public int per_page { get; set; }
