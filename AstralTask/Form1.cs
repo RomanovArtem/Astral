@@ -43,14 +43,20 @@ namespace AstralTask
                 foreach (var item in newObject.items)
                 {
                     var title = item.name;
-                    var salary =  " - ";
-                    var employer = ""; //item.employer.name;
+                    var salary = item.salary == null
+                        ? "Не указана"
+                        : item.salary.@from + " - " + item.salary.to + " " + item.salary.currency;
+                    var employer = item.employer.name;
                     var url = item.alternate_url;
-                    var requirement = ""; //item.snippet.requirement;
-                    var responsibility = ""; //item.snippet.responsibility;
-                    var address = ""; //item.address.city + " " + item.address.street + " " + item.address.raw;
-                    new DataBase().WriteDataDb(title, salary, employer, url, requirement, responsibility, address);
-                    textBox1.AppendText(++count + " " + title + " "  + url + Environment.NewLine);
+                    var requirement = item.snippet.requirement ?? "Не указаны";
+                    var responsibility = item.snippet.responsibility ?? "Не указаны";
+                    var address = item.address == null || (item.address.city == null && item.address.street == null &&
+                                                       item.address.raw == null)
+                        ? "Не указан"
+                        : item.address.city + " " + item.address.street;
+
+                    //new DataBase().WriteDataDb(title, salary, employer, url, requirement, responsibility, address);
+                    textBox1.AppendText(++count + " "+ address + Environment.NewLine);
                 }
 
                 textBox1.AppendText("dвсе");

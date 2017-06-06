@@ -76,7 +76,7 @@ namespace AstralTask
 
     public class Item
     {
-        public Salary salary { get; set; }
+        public Salary salary { get ; set; }
         public Snippet snippet { get; set; }
         public bool archived { get; set; }
         public bool premium { get; set; }
@@ -113,19 +113,7 @@ namespace AstralTask
 
     public class RootObject
     {
-        public object clusters
-        {
-            get
-            {
-                if (clusters == null)
-                {
-                    return "";
-                }
-                return clusters;
-            }
-            set {}
-        }
-
+        public object clusters { get; set; }
         public List<Item> items { get; set; }
         public int pages { get; set; }
         public List<Argument> arguments { get; set; }
