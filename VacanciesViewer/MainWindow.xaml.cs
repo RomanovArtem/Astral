@@ -83,13 +83,12 @@ namespace VacanciesViewer
         {
             
         }
-       // private void vacancyGrid_CellMouseEnter(object sender, DataGridCellEve)
 
-      /*  public void DataSet Page_Load(int id)
+        private void button1_Click(object sender, RoutedEventArgs e)
         {
-            var a = new DatabaseEntities();
-            var da = new SqlDataAdapter("SELECT * FROM Vacancy", );
-            return a.Vacancies;
-        }*/
+
+        }
+
+
     }
 }

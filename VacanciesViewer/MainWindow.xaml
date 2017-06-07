@@ -9,13 +9,21 @@
     <Grid Margin="5">
         <TabControl>
             <TabItem Header="Вакансии с БД">
-                <GroupBox Header="Группа" Margin="5" Padding="5">
+                <GroupBox Header="Группа" Margin="5" Padding="5" RenderTransformOrigin="0.506,0.534">
                     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Grid>
                             <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="32,10,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
-                            
-                            <DataGrid x:Name="vacancyGrid"  Margin="15,336,15,15" Height="350" SelectionChanged="dataGrid_SelectionChanged"
+                            <RichTextBox x:Name="richTextBox" Margin="28,56,36,262" >
+                                <FlowDocument>
+                                    <Paragraph>
+                                        <TextBlock Text="sada"></TextBlock>
+                                        <Run Text="{Binding ElementName=vacancyGrid, Path=CurrentItem.Id}"/>
+                                    </Paragraph>
+                                </FlowDocument>
+                            </RichTextBox>
+                            <DataGrid x:Name="vacancyGrid" Height="250"  Margin="15,466,15,0" SelectionChanged="dataGrid_SelectionChanged"
                                   HorizontalGridLinesBrush = "DarkGray" RowBackground="LightGray" AlternatingRowBackground="White"/>
+                            <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="181,24,0,0" VerticalAlignment="Top" Width="75" Click="button1_Click"/>
                         </Grid>
                     </StackPanel>
                 </GroupBox>
@@ -27,7 +35,6 @@
                     </StackPanel>
                 </GroupBox>
             </TabItem>
-
         </TabControl>
     </Grid>
 
