@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Net.Mime;
 
@@ -7,48 +8,38 @@ namespace VacanciesViewer
 {
     class DataBase
     {
-        /*    private readonly SqlConnection _sqlConnection;
+            private readonly SqlConnection _sqlConnection;
 
             public DataBase()
             {
                 try
                 {
-                    var locationDb = MediaTypeNames.Application.StartupPath + @"\Database.mdf";
-                    var connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + locationDb;
+                    var connectionString = @"Data Source=ARTEM\SQLEXPRESS;Initial Catalog=DataBaseVacancy;Integrated Security=true";
                     _sqlConnection = new SqlConnection(connectionString);
                     _sqlConnection.Open();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
-            public string GetVacancyTitle()
+            public DataSet GetContent()
             {
-                SqlDataReader sqlDataReader = null;
-                var command = new SqlCommand("SELECT * FROM Vacancy", _sqlConnection);
-                var html = "";
-                try
+                var dataSet = new DataSet();
+            try
                 {
-                    sqlDataReader = command.ExecuteReader();
-                    var count = 0;
-                    while (sqlDataReader.Read())
-                    {
-                        count++;
-                        html += count + " " + Convert.ToString(sqlDataReader["title"]) + " " + Convert.ToString(sqlDataReader["url"]) + "\r\n";
-                    }
+                var dataAdapter = new SqlDataAdapter("Select * from Vacancy", _sqlConnection);
+                
+                dataAdapter.Fill(dataSet);
+                _sqlConnection.Close();
+
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                finally
-                {
-                    if (sqlDataReader != null)
-                        sqlDataReader.Close();
-                }
-                return html;
+                return dataSet;
             }
 
             public void WriteDataDb(string title, string salary, string employer, string url, string requirement,
@@ -82,6 +73,6 @@ namespace VacanciesViewer
             {
                 var command = new SqlCommand("DELETE FROM Vacancy", _sqlConnection);
                 command.ExecuteNonQuery();
-            }*/
+            }
     }
 }

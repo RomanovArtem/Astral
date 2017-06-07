@@ -97,6 +97,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataGridHeaderBorder.cs" />
     <Compile Include="RootObject.cs" />
     <Compile Include="Vacancy.cs">
       <DependentUpon>Database.tt</DependentUpon>

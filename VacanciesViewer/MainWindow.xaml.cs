@@ -25,28 +25,26 @@ namespace VacanciesViewer
         private SqlConnection cn;
         private SqlDataAdapter da;
         private DataSet ds;
+
         public MainWindow()
         {
             InitializeComponent();
+            var dataSet = new DataBase().GetContent();
+            vacancyGrid.ItemsSource = dataSet.Tables[0].DefaultView;
 
         }
 
-     
-
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            cn = new SqlConnection(@"Data Source=ARTEM\SQLEXPRESS;Initial Catalog=DataBaseVacancy;Integrated Security=true");
-
-            da = new SqlDataAdapter("Select * from Vacancy", cn);
-            ds = new DataSet();
-            da.Fill(ds);
-            dataGrid.ItemsSource = ds.Tables[0].DefaultView;
+            var dataSet = new DataBase().GetContent();
+            vacancyGrid.ItemsSource = dataSet.Tables[0].DefaultView;
         }
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
         }
+       // private void vacancyGrid_CellMouseEnter(object sender, DataGridCellEve)
 
       /*  public void DataSet Page_Load(int id)
         {
