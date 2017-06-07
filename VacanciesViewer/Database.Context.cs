@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 using System.Data;
-
+ 
 namespace VacanciesViewer
 {
     using System;
