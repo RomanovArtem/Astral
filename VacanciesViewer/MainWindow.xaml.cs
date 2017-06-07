@@ -73,7 +73,9 @@ namespace VacanciesViewer
                    // textBox1.AppendText(++count + " " + title + " " + salary + " " + employer + " " + url + " " +
                    //                     requirement + " " + responsibility + " " + address + Environment.NewLine);
                 }
-               // label1.Text = @"Данные добавлены";
+                // label1.Text = @"Данные добавлены";
+                var dataSet = new DataBase().GetContent();
+                vacancyGrid.ItemsSource = dataSet.Tables[0].DefaultView;
             }
         }
 
