@@ -47,7 +47,7 @@ namespace VacanciesViewer
             {
                 try
                 {
-                    using (SqlCommand command =
+                    using (var command =
                         new SqlCommand(
                             "INSERT INTO Vacancy Values(@title, @salary, @employer, @url, @requirement, @responsibility, @address)",
                             _sqlConnection))
