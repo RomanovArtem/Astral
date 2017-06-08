@@ -13,7 +13,12 @@
                     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Grid>
                             <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="9,9,0,0" VerticalAlignment="Top" Width="29" Click="button_Click" Height="11"/>
-                            <Label x:Name="labelTitle" VerticalAlignment ="Center" Margin="28,56,28,634" HorizontalContentAlignment="Center">
+                            
+                            <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="Поиск сотрудника:" Margin="545,27,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="searchData" Height="23" Margin="669,30,89,663" Width="120" TextChanged="SearchData_OnTextChanged"/>
+                          
+                            
+                        <Label x:Name="labelTitle" VerticalAlignment ="Center" Margin="28,56,28,634" HorizontalContentAlignment="Center">
                                 <TextBlock Text="{Binding ElementName= vacancyGrid, Path=CurrentItem.title}"></TextBlock>
                             </Label>
                         <Label x:Name="labelSalary" HorizontalAlignment="Left"  HorizontalContentAlignment="Left" Margin="29,98,0,0" Width="272" Padding="3,0,0,3">
@@ -39,7 +44,8 @@
 
 
                         <DataGrid x:Name="vacancyGrid" Height="194"  Margin="15,518,15,0" HorizontalGridLinesBrush = "DarkGray" RowBackground="LightGray" AlternatingRowBackground="White" AutoGeneratingColumn="OnAutoGeneratingColumn"/>
-                        </Grid>
+                        <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="39,96,0,0" VerticalAlignment="Top" Width="75" Click="button1_Click"/>
+                    </Grid>
                     </StackPanel>
                <!-- </GroupBox> -->
             </TabItem>

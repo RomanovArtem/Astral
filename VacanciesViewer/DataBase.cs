@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Net.Mime;
+using System.Windows;
 
 
 namespace VacanciesViewer
@@ -24,25 +25,38 @@ namespace VacanciesViewer
                 }
             }
 
-            public DataSet GetContent()
-            {
-                var dataSet = new DataSet();
+        public DataSet GetContent(string filter)
+        {
+            var dataSet = new DataSet();
+            filter = " '%" + filter + "%' ";
             try
+            {
+                string query;
+                if (filter == "")
                 {
-                var dataAdapter = new SqlDataAdapter("Select * from Vacancy", _sqlConnection);
-                
+                    query = "SELECT * FROM Vacancy";
+                }
+                else
+                {
+                    query = "SELECT * FROM Vacancy WHERE title LIKE" + filter + "or salary LIKE" +
+                            filter + "or employer LIKE" + filter + "or requirement LIKE" + filter +
+                            "or responsibility LIKE" + filter + "or address LIKE" + filter;
+                }
+
+                var dataAdapter = new SqlDataAdapter(query, _sqlConnection);
+
                 dataAdapter.Fill(dataSet);
                 _sqlConnection.Close();
 
-                }
-                catch (Exception ex)
-                {
-                    //MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                return dataSet;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return dataSet;
+        }
 
-            public void WriteDataDb(string title, string salary, string employer, string url, string requirement,
+        public void WriteDataDb(string title, string salary, string employer, string url, string requirement,
                 string responsibility, string address)
             {
                 try

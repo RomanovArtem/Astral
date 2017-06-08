@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using Newtonsoft.Json;
 
@@ -25,7 +26,7 @@ namespace VacanciesViewer
         public MainWindow()
         {
             InitializeComponent();
-            var dataSet = new DataBase().GetContent();
+            var dataSet = new DataBase().GetContent("");
             vacancyGrid.ItemsSource = dataSet.Tables[0].DefaultView;
 
         }
@@ -88,7 +89,7 @@ namespace VacanciesViewer
                    //                     requirement + " " + responsibility + " " + address + Environment.NewLine);
                 }
                 // label1.Text = @"Данные добавлены";
-                var dataSet = new DataBase().GetContent();
+                var dataSet = new DataBase().GetContent("");
 
                 vacancyGrid.ItemsSource = dataSet.Tables[0].DefaultView;
             }
@@ -115,6 +116,25 @@ namespace VacanciesViewer
             StreamWriter SW = new StreamWriter(new FileStream("FileName.txt", FileMode.Create, FileAccess.Write));
             SW.Write(s);
             SW.Close();
+        }
+
+        private void SearchData_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            //((DataView) vacancyGrid.DataContext).RowFilter = "(A LIKE '" + searchData.Text + "*')";
+        }
+
+        public void button1_Click(object sender, RoutedEventArgs e)
+        {
+            var dataSet = new DataBase().GetContent(searchData.Text);
+            if (dataSet.Tables[0].DefaultView.Count > 0)
+            {
+                vacancyGrid.ItemsSource = dataSet.Tables[0].DefaultView;
+            }
+            else
+            {
+                MessageBox.Show("Ничего не найдено!");
+            }
+            
         }
     }
 }
