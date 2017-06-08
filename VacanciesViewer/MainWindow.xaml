@@ -16,13 +16,20 @@
                             <Label x:Name="labelTitle" VerticalAlignment ="Center" Margin="28,56,28,634" HorizontalContentAlignment="Center">
                                 <TextBlock Text="{Binding ElementName= vacancyGrid, Path=CurrentItem.title}"></TextBlock>
                             </Label>
-                        <Label x:Name="labelSalary" HorizontalAlignment="Left"  HorizontalContentAlignment="Left" Margin="28,98,0,0" Width="199" Padding="3,0,0,0">
+                        <Label x:Name="labelSalary" HorizontalAlignment="Left"  HorizontalContentAlignment="Left" Margin="29,98,0,0" Width="272" Padding="3,0,0,3">
                             <TextBlock Text="{Binding StringFormat=Зарплата: {0}, ElementName=vacancyGrid, Path=CurrentItem.salary}"></TextBlock>
                         </Label>
-                            <RichTextBox x:Name="richTextBox" Margin="28,125,28,215">
+                        <Label x:Name="labelEmployer" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Margin="0,98,0,0" Width="272" Padding="3,0,0,3">
+                            <TextBlock Text="{Binding StringFormat=Работодатель: {0}, ElementName=vacancyGrid, Path=CurrentItem.employer}"></TextBlock>
+                        </Label>
+                        <Label x:Name="labelUrl" HorizontalAlignment="Right"  HorizontalContentAlignment="Right" Margin="0,98,29,0" Width="272" Padding="3,0,0,3">
+                            <TextBlock x:Name="labelUrlText" Text="{Binding StringFormat=URL-адрес: {0}, ElementName=vacancyGrid, Path=CurrentItem.url}" DataContext ="{Binding StringFormat=URL-адрес: {0}, ElementName=vacancyGrid, Path=CurrentItem.url}" Cursor="Hand" TextDecorations="underline" MouseLeftButtonUp="LabelUrl_OnMouseLeftButtonUp"></TextBlock>
+                        </Label>
+                            
+                        <RichTextBox x:Name="richTextBox" Margin="28,125,28,215">
                                 <FlowDocument>
                                     <Paragraph>
-                                        <TextBlock Text="sada"></TextBlock>
+                                    <TextBlock Text=" Width=822"></TextBlock>
                                         <Run Text="{Binding ElementName=vacancyGrid, Path=CurrentItem.Id}"/>
                                     </Paragraph>
                                 </FlowDocument>
