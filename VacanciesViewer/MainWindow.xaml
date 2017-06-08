@@ -35,11 +35,10 @@
                                 <Run Text="aa"></Run>
                             </TextBlock>
                         </GroupBox>
-                            
-                            
-                       
-                            <DataGrid x:Name="vacancyGrid" Height="194"  Margin="15,518,15,0" SelectionChanged="dataGrid_SelectionChanged"
-                                  HorizontalGridLinesBrush = "DarkGray" RowBackground="LightGray" AlternatingRowBackground="White"/>
+
+
+
+                        <DataGrid x:Name="vacancyGrid" Height="194"  Margin="15,518,15,0" HorizontalGridLinesBrush = "DarkGray" RowBackground="LightGray" AlternatingRowBackground="White" AutoGeneratingColumn="OnAutoGeneratingColumn"/>
                         </Grid>
                     </StackPanel>
                <!-- </GroupBox> -->

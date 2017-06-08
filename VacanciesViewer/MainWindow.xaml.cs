@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -75,17 +76,7 @@ namespace VacanciesViewer
                         : item.salary.@from + " - " + item.salary.to + " " + item.salary.currency;
                     var employer = item.employer.name;
                     var url = item.alternate_url;
-                    string requirement = "";
-                    if (item.snippet.requirement == null)
-                    {
-                        requirement = "Не указаны";
-                    }
-                    else
-                    {
-                        requirement = item.snippet.requirement;
-                        requirement = requirement.Replace(". ", "\r\n");
-                    }
-                    //var requirement = item.snippet.requirement ?? "Не указаны";
+                    var requirement = item.snippet.requirement?.Replace(". ", "\n") ?? "Не указаны";
                     var responsibility = item.snippet.responsibility ?? "Не указаны";
                     var address = item.address == null || (item.address.city == null && item.address.street == null &&
                                                            item.address.raw == null)
@@ -98,16 +89,20 @@ namespace VacanciesViewer
                 }
                 // label1.Text = @"Данные добавлены";
                 var dataSet = new DataBase().GetContent();
+
                 vacancyGrid.ItemsSource = dataSet.Tables[0].DefaultView;
             }
         }
 
-        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            
+            PropertyDescriptor propertyDescriptor = (PropertyDescriptor) e.PropertyDescriptor;
+            e.Column.Header = propertyDescriptor.DisplayName;
+            if (propertyDescriptor.DisplayName == "requirement" || propertyDescriptor.DisplayName == "responsibility")
+            {
+                e.Cancel = true;
+            }
         }
-
-   
 
         private void LabelUrl_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
