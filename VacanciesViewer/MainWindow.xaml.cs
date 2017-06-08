@@ -57,7 +57,27 @@ namespace VacanciesViewer
                 foreach (var item in newObject.items)
                 {
                     var title = item.name;
-                    var salary = item.salary == null
+                    var salary = "";
+                    if (item.salary != null)
+                    {
+                        if (item.salary.@from == null)
+                        {
+                            salary = "до " + item.salary.to + " " + item.salary.currency;
+                        }
+                        if (item.salary.to == null)
+                        {
+                            salary = "от " + item.salary.@from + " " + item.salary.currency;
+                        }
+                        else
+                        {
+                            salary = "от " + item.salary.@from + " до " + item.salary.to + " " + item.salary.currency;
+                        }
+                    }
+                    else
+                    {
+                        salary = "Не указана";
+                    }
+                    var salarya = item.salary == null
                         ? "Не указана"
                         : item.salary.@from + " - " + item.salary.to + " " + item.salary.currency;
                     var employer = item.employer.name;

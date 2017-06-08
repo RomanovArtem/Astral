@@ -13,9 +13,12 @@
                     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Grid>
                             <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="9,9,0,0" VerticalAlignment="Top" Width="29" Click="button_Click" Height="11"/>
-                            <Label x:Name="label" VerticalAlignment ="Center" Margin="29,56,27,634" HorizontalContentAlignment="Center">
+                            <Label x:Name="labelTitle" VerticalAlignment ="Center" Margin="28,56,28,634" HorizontalContentAlignment="Center">
                                 <TextBlock Text="{Binding ElementName= vacancyGrid, Path=CurrentItem.title}"></TextBlock>
                             </Label>
+                        <Label x:Name="labelSalary" HorizontalAlignment="Left"  HorizontalContentAlignment="Left" Margin="28,98,0,0" Width="199" Padding="3,0,0,0">
+                            <TextBlock Text="{Binding StringFormat=Зарплата: {0}, ElementName=vacancyGrid, Path=CurrentItem.salary}"></TextBlock>
+                        </Label>
                             <RichTextBox x:Name="richTextBox" Margin="28,125,28,215">
                                 <FlowDocument>
                                     <Paragraph>
