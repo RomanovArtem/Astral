@@ -1,22 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Linq;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Newtonsoft.Json;
 
 namespace VacanciesViewer
@@ -48,9 +39,10 @@ namespace VacanciesViewer
                 client.DefaultRequestHeaders.Add("User-Agent", "api-test-agent");
 
                 var result = client.GetAsync("/vacancies?describe_arguments=true&area=1&per_page=50").Result;
-                string resultContent = result.Content.ReadAsStringAsync().Result;
-                //   textBox1.AppendText(resultContent);
-                //WriteFile(resultContent);
+                var resultContent = result.Content.ReadAsStringAsync().Result;
+
+            //   textBox1.AppendText(resultContent);
+                WriteFile(resultContent);
 
                 var newObject = JsonConvert.DeserializeObject<RootObject>(resultContent);
                 var b = "";
@@ -83,7 +75,17 @@ namespace VacanciesViewer
                         : item.salary.@from + " - " + item.salary.to + " " + item.salary.currency;
                     var employer = item.employer.name;
                     var url = item.alternate_url;
-                    var requirement = item.snippet.requirement ?? "Не указаны";
+                    string requirement = "";
+                    if (item.snippet.requirement == null)
+                    {
+                        requirement = "Не указаны";
+                    }
+                    else
+                    {
+                        requirement = item.snippet.requirement;
+                        requirement = requirement.Replace(". ", "\r\n");
+                    }
+                    //var requirement = item.snippet.requirement ?? "Не указаны";
                     var responsibility = item.snippet.responsibility ?? "Не указаны";
                     var address = item.address == null || (item.address.city == null && item.address.street == null &&
                                                            item.address.raw == null)
@@ -110,6 +112,14 @@ namespace VacanciesViewer
         private void LabelUrl_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Process.Start(labelUrlText.DataContext.ToString());
+        }
+
+
+        public void WriteFile(string s)
+        {
+            StreamWriter SW = new StreamWriter(new FileStream("FileName.txt", FileMode.Create, FileAccess.Write));
+            SW.Write(s);
+            SW.Close();
         }
     }
 }
