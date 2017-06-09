@@ -43,7 +43,7 @@ namespace VacanciesViewer
                 var result = client.GetAsync("/vacancies?describe_arguments=true&area=1&per_page=50").Result;
                 var resultContent = result.Content.ReadAsStringAsync().Result;
 
-            //   textBox1.AppendText(resultContent);
+                //   textBox1.AppendText(resultContent);
                 WriteFile(resultContent);
 
                 var newObject = JsonConvert.DeserializeObject<RootObject>(resultContent);
@@ -85,8 +85,8 @@ namespace VacanciesViewer
                         : item.address.city + " " + item.address.street;
 
                     new DataBase().WriteDataDb(title, salary, employer, url, requirement, responsibility, address);
-                   // textBox1.AppendText(++count + " " + title + " " + salary + " " + employer + " " + url + " " +
-                   //                     requirement + " " + responsibility + " " + address + Environment.NewLine);
+                    // textBox1.AppendText(++count + " " + title + " " + salary + " " + employer + " " + url + " " +
+                    //                     requirement + " " + responsibility + " " + address + Environment.NewLine);
                 }
                 // label1.Text = @"Данные добавлены";
                 var dataSet = new DataBase().GetContent("");
@@ -123,7 +123,8 @@ namespace VacanciesViewer
             //((DataView) vacancyGrid.DataContext).RowFilter = "(A LIKE '" + searchData.Text + "*')";
         }
 
-        public void button1_Click(object sender, RoutedEventArgs e)
+
+        private void SearchData_OnKeyDown(object sender, KeyEventArgs e)
         {
             var dataSet = new DataBase().GetContent(searchData.Text);
             if (dataSet.Tables[0].DefaultView.Count > 0)
@@ -134,7 +135,8 @@ namespace VacanciesViewer
             {
                 MessageBox.Show("Ничего не найдено!");
             }
-            
         }
+
     }
 }
+
