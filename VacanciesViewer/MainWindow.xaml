@@ -35,7 +35,7 @@
                             <GroupBox Name="Информация" Margin="28,125,28,215" Height="220">
                             <TextBlock x:Name="requirementTextBlock">
                                 <LineBreak></LineBreak>
-                                <TextBlock Text="{Binding StringFormat=Требования: {0}, ElementName=vacancyGrid, Path=CurrentItem.requirement}"  TextWrapping="Wrap"></TextBlock>
+                                <TextBlock x:Name="textBlockRequirement" Text="{Binding StringFormat=Требования: {0}, ElementName=vacancyGrid, Path=CurrentItem.requirement}"  TextWrapping="Wrap"></TextBlock>
                                 <LineBreak></LineBreak>
                                 <LineBreak></LineBreak>
                                 <LineBreak></LineBreak>

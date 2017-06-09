@@ -77,8 +77,10 @@ namespace VacanciesViewer
                         : item.salary.@from + " - " + item.salary.to + " " + item.salary.currency;
                     var employer = item.employer.name;
                     var url = item.alternate_url;
-                    var requirement = item.snippet.requirement?.Replace(". ", "\n") ?? "Не указаны";
-                    var responsibility = item.snippet.responsibility ?? "Не указаны";
+                    
+                    var requirement = item.snippet.requirement == null ? "Не указаны" : string.Concat("\n", item.snippet.requirement.Replace(". ", "\n"));
+                    var responsibility = item.snippet.responsibility == null ? "Не указаны" : string.Concat("\n", item.snippet.responsibility.Replace(". ", "\n"));
+
                     var address = item.address == null || (item.address.city == null && item.address.street == null &&
                                                            item.address.raw == null)
                         ? "Не указан"
