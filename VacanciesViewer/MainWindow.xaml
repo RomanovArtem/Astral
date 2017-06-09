@@ -33,11 +33,13 @@
                             
                             
                             <GroupBox Name="Информация" Margin="28,125,28,215" Height="220">
-                            <TextBlock x:Name="requirementTextBlock" Text="Требования: ">
+                            <TextBlock x:Name="requirementTextBlock">
                                 <LineBreak></LineBreak>
-                                <TextBlock Text="{Binding ElementName=vacancyGrid, Path=CurrentItem.requirement}" TextWrapping="Wrap"></TextBlock>
+                                <TextBlock Text="{Binding StringFormat=Требования: {0}, ElementName=vacancyGrid, Path=CurrentItem.requirement}"  TextWrapping="Wrap"></TextBlock>
                                 <LineBreak></LineBreak>
-                                <Run Text="aa"></Run>
+                                <LineBreak></LineBreak>
+                                <LineBreak></LineBreak>
+                                <TextBlock Text= "{Binding StringFormat=Обязанности: {0}, ElementName=vacancyGrid, Path=CurrentItem.responsibility}" TextWrapping="Wrap"></TextBlock>
                             </TextBlock>
                         </GroupBox>
 
