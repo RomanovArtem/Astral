@@ -105,6 +105,19 @@ namespace VacanciesViewer
             {
                 e.Cancel = true;
             }
+            var a = e.Column.Header;
+            switch (propertyDescriptor.DisplayName)
+            {
+                case "title":
+                    e.Column.Header = "Название";
+                    break;
+                case "salary":
+                    e.Column.Header = "Зарплата";
+                    break;
+                case "employer":
+                    e.Column.Header = "Работодатель";
+                    break;
+            }
         }
 
         private void LabelUrl_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
