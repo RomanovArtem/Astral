@@ -99,6 +99,7 @@ namespace VacanciesViewer
 
         private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
+
             PropertyDescriptor propertyDescriptor = (PropertyDescriptor) e.PropertyDescriptor;
             e.Column.Header = propertyDescriptor.DisplayName;
             if (propertyDescriptor.DisplayName == "requirement" || propertyDescriptor.DisplayName == "responsibility")
@@ -117,6 +118,9 @@ namespace VacanciesViewer
                 case "employer":
                     e.Column.Header = "Работодатель";
                     break;
+                case "address":
+                    e.Column.Header = "Адрес";
+                    break;
             }
         }
 
@@ -133,13 +137,8 @@ namespace VacanciesViewer
             SW.Close();
         }
 
-        private void SearchData_OnTextChanged(object sender, TextChangedEventArgs e)
-        {
-            //((DataView) vacancyGrid.DataContext).RowFilter = "(A LIKE '" + searchData.Text + "*')";
-        }
 
-
-        private void SearchData_OnKeyDown(object sender, KeyEventArgs e)
+        private void searchData_TextChanged(object sender, TextChangedEventArgs e)
         {
             var dataSet = new DataBase().GetContent(searchData.Text);
             if (dataSet.Tables[0].DefaultView.Count > 0)
@@ -151,7 +150,6 @@ namespace VacanciesViewer
                 MessageBox.Show("Ничего не найдено!");
             }
         }
-
     }
 }
 

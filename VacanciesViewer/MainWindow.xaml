@@ -8,54 +8,51 @@
         Title="MainWindow" Height="800" Width="900" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Margin="5">
         <TabControl>
-            <TabItem Header="Вакансии с БД">
+            <TabItem Header="Информация о вакансиях">
                 <!-- <GroupBox Header="Группа" Margin="5,5,5,241" Padding="5" RenderTransformOrigin="0.506,0.534"> -->
-                    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Grid>
-                            <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="9,9,0,0" VerticalAlignment="Top" Width="29" Click="button_Click" Height="11"/>
-                            
-                            <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="Поиск сотрудника:" Margin="545,27,0,0" VerticalAlignment="Top"/>
-                                <TextBox x:Name="searchData" Height="23" Margin="669,30,89,663" Width="120" KeyDown="SearchData_OnKeyDown"/>
-                          
-                            
-                        <Label x:Name="labelTitle" VerticalAlignment ="Center" Margin="28,56,28,634" HorizontalContentAlignment="Center">
-                                <TextBlock Text="{Binding ElementName= vacancyGrid, Path=CurrentItem.title}"></TextBlock>
-                            </Label>
-                        <Label x:Name="labelSalary" HorizontalAlignment="Left"  HorizontalContentAlignment="Left" Margin="29,98,0,0" Width="272" Padding="3,0,0,3">
+                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid>
+                        <Button x:Name="button" Content="Загрузить новые вакансии с сайта" HorizontalAlignment="Left" Margin="653,688,0,0" VerticalAlignment="Top" Width="208" Click="button_Click" Height="20" RenderTransformOrigin="11,21.545"/>
+
+                        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Margin="548,27,0,0" VerticalAlignment="Top"><Run Text="Поиск "/><Run Text="вакансии"/><Run Text=":"/></TextBlock>
+                        <TextBox x:Name="searchData" Height="23" Margin="648,23,28,670" TextChanged="searchData_TextChanged" Padding="5,2,5,2"/>
+
+
+                        <Label x:Name="labelTitle" VerticalAlignment ="Center" Margin="28,70,28,620" HorizontalContentAlignment="Center">
+                            <TextBlock Text="{Binding ElementName= vacancyGrid, Path=CurrentItem.title}"></TextBlock>
+                        </Label>
+                        <Label x:Name="labelSalary" HorizontalAlignment="Left"  HorizontalContentAlignment="Left" Margin="29,135,0,561" Width="272" Height="20" Padding="3,0,3,0">
                             <TextBlock Text="{Binding StringFormat=Зарплата: {0}, ElementName=vacancyGrid, Path=CurrentItem.salary}"></TextBlock>
                         </Label>
-                        <Label x:Name="labelEmployer" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Margin="0,98,0,0" Width="272" Padding="3,0,0,3">
+                        <Label x:Name="labelEmployer" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Margin="303,135,303,561" Height="20" Width="272" Padding="3,0,3,0">
                             <TextBlock Text="{Binding StringFormat=Работодатель: {0}, ElementName=vacancyGrid, Path=CurrentItem.employer}"></TextBlock>
                         </Label>
-                        <Label x:Name="labelUrl" HorizontalAlignment="Right"  HorizontalContentAlignment="Right" Margin="0,98,29,0" Width="272" Padding="3,0,0,3">
-                            <TextBlock x:Name="labelUrlText" Text="{Binding StringFormat=URL-адрес: {0}, ElementName=vacancyGrid, Path=CurrentItem.url}" DataContext ="{Binding StringFormat=URL-адрес: {0}, ElementName=vacancyGrid, Path=CurrentItem.url}" Cursor="Hand" TextDecorations="underline" MouseLeftButtonUp="LabelUrl_OnMouseLeftButtonUp"/>
+                        <Label x:Name="labelAddress" HorizontalAlignment="Right"  HorizontalContentAlignment="Right" Margin="0,135,29,561" Width="272" Height="20" Padding="3,0,3,0">
+                            <TextBlock x:Name="labelAddressText" Text="{Binding StringFormat=Адрес: {0}, ElementName=vacancyGrid, Path=CurrentItem.address}" DataContext ="{Binding StringFormat=URL-адрес: {0}, ElementName=vacancyGrid, Path=CurrentItem.url}"/>
                         </Label>
-                            
-                            
-                            <GroupBox Name="Информация" Margin="28,125,28,215" Height="220">
-                            <TextBlock x:Name="requirementTextBlock">
-                                <LineBreak></LineBreak>
+
+
+                        <GroupBox Margin="28,188,28,308" Height="220" Padding="10">
+                            <ScrollViewer>
+                                <TextBlock ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                       ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                       ScrollViewer.CanContentScroll="True">
                                 <TextBlock x:Name="textBlockRequirement" Text="{Binding StringFormat=Требования: {0}, ElementName=vacancyGrid, Path=CurrentItem.requirement}"  TextWrapping="Wrap"></TextBlock>
-                                <LineBreak></LineBreak>
                                 <LineBreak></LineBreak>
                                 <LineBreak></LineBreak>
                                 <TextBlock Text= "{Binding StringFormat=Обязанности: {0}, ElementName=vacancyGrid, Path=CurrentItem.responsibility}" TextWrapping="Wrap"></TextBlock>
                             </TextBlock>
+                            </ScrollViewer>
                         </GroupBox>
 
+                        <Label x:Name="labelUrl" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Margin="432,425,32,271" Width="414" Height="20" Padding="3,0,0,3">
+                            <TextBlock x:Name="labelUrlText" Text="{Binding StringFormat=Посмотреть подробную информацию: {0}, ElementName=vacancyGrid, Path=CurrentItem.url}" DataContext ="{Binding StringFormat=URL-адрес: {0}, ElementName=vacancyGrid, Path=CurrentItem.url}" Cursor="Hand" TextDecorations="underline" MouseLeftButtonUp="LabelUrl_OnMouseLeftButtonUp"/>
+                        </Label>
 
-
-                        <DataGrid x:Name="vacancyGrid" Height="194"  Margin="15,518,15,0" HorizontalGridLinesBrush = "DarkGray" RowBackground="LightGray" AlternatingRowBackground="White" AutoGeneratingColumn="OnAutoGeneratingColumn"/>
+                        <DataGrid x:Name="vacancyGrid" Height="194" Margin="15,483,15,39" HorizontalGridLinesBrush = "DarkGray" RowBackground="LightGray" AlternatingRowBackground="White" AutoGeneratingColumn="OnAutoGeneratingColumn"/>
                     </Grid>
-                    </StackPanel>
-               <!-- </GroupBox> -->
-            </TabItem>
-            <TabItem Header="Вакансии с сайта">
-                <GroupBox Header="Группа" Margin="5" Padding="5">
-                    <StackPanel>
-
-                    </StackPanel>
-                </GroupBox>
+                </StackPanel>
+                <!-- </GroupBox> -->
             </TabItem>
         </TabControl>
     </Grid>
