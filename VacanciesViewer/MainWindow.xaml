@@ -6,6 +6,60 @@
         xmlns:local="clr-namespace:VacanciesViewer"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="900" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style x:Key="DataGrid">
+            <Setter Property="DataGrid.RowBackground">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                        <GradientStop Offset="1" Color="#E8F0FD"/>
+                        <GradientStop Offset="0.5" Color="#DEE4FA"/>
+                        <GradientStop Offset="0" Color="#D8E2EE"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="DataGrid.VerticalGridLinesBrush">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                        <GradientStop Offset="1" Color="#F6FCFF"/>
+                        <GradientStop Offset="0" Color="#F4FBFF"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="DataGrid.HorizontalGridLinesBrush">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                        <GradientStop Offset="1" Color="#E8F0FD"/>
+                        <GradientStop Offset="0.5" Color="#DEE4FA"/>
+                        <GradientStop Offset="0" Color="#D8E2EE"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                        <GradientStop Offset="1" Color="#72A2C6"/>
+                        <GradientStop Offset="0.5" Color="#76A8C3"/>
+                        <GradientStop Offset="0" Color="#739DC3"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+
+            <Setter Property="Padding" Value="5"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="BorderThickness" Value="0 0 1 0"></Setter>
+        </Style>
+
+    </Window.Resources>
+
+
+
     <Grid Margin="5">
         <TabControl>
             <TabItem Header="Информация о вакансиях">
@@ -49,13 +103,16 @@
                             <TextBlock x:Name="labelUrlText" Text="{Binding StringFormat=Посмотреть подробную информацию: {0}, ElementName=vacancyGrid, Path=CurrentItem.url}" DataContext ="{Binding StringFormat=URL-адрес: {0}, ElementName=vacancyGrid, Path=CurrentItem.url}" Cursor="Hand" TextDecorations="underline" MouseLeftButtonUp="LabelUrl_OnMouseLeftButtonUp"/>
                         </Label>
 
-                        <DataGrid x:Name="vacancyGrid" Height="194" Margin="15,483,15,39" HorizontalGridLinesBrush = "DarkGray" RowBackground="LightGray" AlternatingRowBackground="White" AutoGeneratingColumn="OnAutoGeneratingColumn"/>
+                        <DataGrid x:Name="vacancyGrid" Style="{StaticResource DataGrid}" ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}" HeadersVisibility="Column"  Height="194" Margin="15,483,15,39" AutoGeneratingColumn="OnAutoGeneratingColumn"/>
                     </Grid>
                 </StackPanel>
                 <!-- </GroupBox> -->
             </TabItem>
         </TabControl>
     </Grid>
+
+
+
 
 </Window>
 
