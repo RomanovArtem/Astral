@@ -87,11 +87,15 @@
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                         <GradientStop Offset="1" Color="#729CC2"/>
-                      
                         <GradientStop Offset="0" Color="#F0F1F8"/>
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
+        </Style>
+        
+        <Style x:Key="Title" TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="27"/>
+            <Setter Property="Foreground" Value="Yellow"></Setter>
         </Style>
         
     </Window.Resources>
@@ -110,7 +114,7 @@
                         <TextBox x:Name="searchData" Height="23" Margin="648,23,28,670" TextChanged="searchData_TextChanged" Padding="5,2,5,2"/>
 
 
-                        <Label x:Name="labelTitle" VerticalAlignment ="Center" Margin="28,70,28,620" HorizontalContentAlignment="Center">
+                        <Label x:Name="labelTitle" Style="{StaticResource Title}" VerticalAlignment ="Center" Margin="28,70,28,620" HorizontalContentAlignment="Center">
                             <TextBlock Text="{Binding ElementName= vacancyGrid, Path=CurrentItem.title}"></TextBlock>
                         </Label>
                         <Label x:Name="labelSalary" HorizontalAlignment="Left"  HorizontalContentAlignment="Left" Margin="29,135,0,561" Width="272" Height="20" Padding="3,0,3,0">
