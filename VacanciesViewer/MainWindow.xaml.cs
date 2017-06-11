@@ -22,6 +22,7 @@ namespace VacanciesViewer
         private SqlConnection cn;
         private SqlDataAdapter da;
         private DataSet ds;
+        private DataGridCellInfo currentItem;
 
         public MainWindow()
         {
