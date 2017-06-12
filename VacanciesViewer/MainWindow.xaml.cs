@@ -81,11 +81,23 @@ namespace VacanciesViewer
                     
                     var requirement = item.snippet.requirement == null ? "Не указаны" : string.Concat("\n", item.snippet.requirement.Replace(". ", "\n"));
                     var responsibility = item.snippet.responsibility == null ? "Не указаны" : string.Concat("\n", item.snippet.responsibility.Replace(". ", "\n"));
-
-                    var address = item.address == null || (item.address.city == null && item.address.street == null &&
-                                                           item.address.raw == null)
+                    var address = "";
+                    if (item.address == null || (item.address.city == null && item.address.street == null && item.address.raw == null))
+                    {
+                        address = "Не указан";
+                    }
+                    else if (item.address.city == null && item.address.street == null)
+                    {
+                        address = item.address.raw;
+                    }
+                    else
+                    {
+                        address = item.address.city + " " + item.address.street;
+                    }
+                    /*var address = item.address == null || (item.address.city == null && item.address.street == null &&
+                item.address.raw == null)
                         ? "Не указан"
-                        : item.address.city + " " + item.address.street;
+                        : item.address.city + " " + item.address.street + item.address.raw; */
 
                     new DataBase().WriteDataDb(title, salary, employer, url, requirement, responsibility, address);
                     // textBox1.AppendText(++count + " " + title + " " + salary + " " + employer + " " + url + " " +

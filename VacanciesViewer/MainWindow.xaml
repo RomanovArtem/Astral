@@ -53,7 +53,7 @@
             <Setter Property="Foreground" Value="#5390AC"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="Width" Value="272"/>
+            <Setter Property="Width" Value="250"/>
             <Setter Property="Padding" Value="3,0,3,0"/>
             <Setter Property="Margin" Value="29,142,0,540"/>
         </Style>
@@ -63,9 +63,9 @@
             <Setter Property="Foreground" Value="#5390AC"></Setter>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="Width" Value="272"/>
+            <Setter Property="Width" Value="294"/>
             <Setter Property="Padding" Value="3,0,3,0"/>
-            <Setter Property="Margin" Value="311,142,311,540"/>
+            <Setter Property="Margin" Value="289,142,311,540"/>
         </Style>
 
         <Style x:Key="Address" TargetType="Label">
@@ -120,6 +120,7 @@
         </Style>
 
         <Style x:Key="DataGrid" TargetType="DataGrid">
+            <Setter Property="SelectionMode" Value="Single"/>
             <Setter Property="RowBackground">
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
@@ -153,7 +154,6 @@
             <Style.Triggers>
                 <Trigger Property="EnableColumnVirtualization" Value="true">
                     <Setter Property="BorderBrush" Value="GreenYellow"/>
-
                     <Setter Property="Opacity" Value="0"></Setter>
                 </Trigger>
             </Style.Triggers>
