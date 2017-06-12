@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Net.Mime;
 using System.Windows;
 
@@ -15,7 +16,9 @@ namespace VacanciesViewer
             {
                 try
                 {
-                    var connectionString = @"Data Source=ARTEM\SQLEXPRESS;Initial Catalog=DataBaseVacancy;Integrated Security=true";
+                    var locationDb = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Database.mdf");
+
+                var connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + locationDb;
                     _sqlConnection = new SqlConnection(connectionString);
                     _sqlConnection.Open();
                 }
@@ -28,7 +31,6 @@ namespace VacanciesViewer
         public DataSet GetContent(string filter)
         {
             var dataSet = new DataSet();
-            filter = " '%" + filter + "%' ";
             try
             {
                 string query;
@@ -38,6 +40,8 @@ namespace VacanciesViewer
                 }
                 else
                 {
+                    filter = " N'%" + filter + "%' ";
+
                     query = "SELECT * FROM Vacancy WHERE title LIKE" + filter + "or salary LIKE" +
                             filter + "or employer LIKE" + filter + "or requirement LIKE" + filter +
                             "or responsibility LIKE" + filter + "or address LIKE" + filter;

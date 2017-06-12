@@ -1,88 +1,16 @@
-﻿<Window x:Class="VacanciesViewer.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:VacanciesViewer"
-        mc:Ignorable="d"
+﻿<Window x:Class="VacanciesViewer.MainWindow" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         Title="Моя вакансия" Height="756" Width="900" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
     <Window.Resources>
-        <Style x:Key="DataGrid">
-            <Setter Property="DataGrid.RowBackground">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
-                        <GradientStop Offset="1" Color="#E8F0FD"/>
-                        <GradientStop Offset="0.5" Color="#DEE4FA"/>
-                        <GradientStop Offset="0" Color="#D8E2EE"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-
-            <Setter Property="DataGrid.VerticalGridLinesBrush">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
-                        <GradientStop Offset="1" Color="#F6FCFF"/>
-                        <GradientStop Offset="0" Color="#F4FBFF"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="DataGrid.HorizontalGridLinesBrush">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
-                        <GradientStop Offset="1" Color="#E8F0FD"/>
-                        <GradientStop Offset="0.5" Color="#DEE4FA"/>
-                        <GradientStop Offset="0" Color="#D8E2EE"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
+        <Style x:Key="StackPanel" TargetType="StackPanel">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
         </Style>
 
-        <Style x:Key="ColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+        <Style x:Key="Grid" TargetType="Grid">
             <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
-                        <GradientStop Offset="1" Color="#72A2C6"/>
-                        <GradientStop Offset="0.5" Color="#76A8C3"/>
-                        <GradientStop Offset="0" Color="#739DC3"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-
-            <Setter Property="Padding" Value="5"></Setter>
-            <Setter Property="FontSize" Value="14"></Setter>
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="BorderThickness" Value="0 0 1 0"></Setter>
-        </Style>
-        <Style TargetType="{x:Type DataGridCell}">
-            <Style.Triggers>
-                <Trigger Property="IsSelected" Value="true">
-                    <Setter Property="BorderBrush" Value="GreenYellow"/>
-                    <Setter Property="Background">
-                        <Setter.Value>
-                            <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
-                                <GradientStop Offset="1" Color="#7AAE49"/>
-                                <GradientStop Offset="0" Color="#7DAF4E"/>
-                            </LinearGradientBrush>
-                        </Setter.Value>
-                    </Setter>
-                    <Setter Property="Opacity" Value="0.85"></Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style TargetType="{x:Type DataGrid}">
-            <Style.Triggers>
-                <Trigger Property="EnableColumnVirtualization" Value="true">
-                    <Setter Property="BorderBrush" Value="GreenYellow"/>
-
-                    <Setter Property="Opacity" Value="0"></Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="Grid">
-            <Setter Property="Grid.Background">
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                         <GradientStop Offset="1" Color="#729CC2"/>
@@ -91,15 +19,93 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="Title" TargetType="{x:Type Label}">
-            <Setter Property="FontSize" Value="22"/>
-            <Setter Property="Foreground" Value="#4A819C"></Setter>
+
+        <Style x:Key="SearchText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="CornflowerBlue"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="538,32,0,0"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Width" Value="101"/>
         </Style>
-        <Style x:Key="Information" TargetType="{x:Type Label}">
+
+        <Style x:Key="SearchData" TargetType="TextBox">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderBrush" Value="CornflowerBlue"/>
+            <Setter Property="Background" Value="GhostWhite"/>
+            <Setter Property="Padding" Value="5,2,5,2"/>
+            <Setter Property="Foreground" Value="DarkGray"/>
+            <Setter Property="Height" Value="23"/>
+            <Setter Property="Margin" Value="648,23,28,670"/>
+        </Style>
+
+        <Style x:Key="Title" TargetType="Label">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Foreground" Value="#4A819C"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="3,70,3,620"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="Salary" TargetType="Label">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="#5390AC"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Width" Value="272"/>
+            <Setter Property="Padding" Value="3,0,3,0"/>
+            <Setter Property="Margin" Value="29,142,0,540"/>
+        </Style>
+
+        <Style x:Key="Employer" TargetType="Label">
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="Foreground" Value="#5390AC"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Width" Value="272"/>
+            <Setter Property="Padding" Value="3,0,3,0"/>
+            <Setter Property="Margin" Value="311,142,311,540"/>
         </Style>
-        <Style x:Key="Url" TargetType="{x:Type TextBlock}">
+
+        <Style x:Key="Address" TargetType="Label">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="#5390AC"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="Width" Value="272"/>
+            <Setter Property="Padding" Value="3,0,3,0"/>
+            <Setter Property="Margin" Value="0,142,29,540"/>
+        </Style>
+
+        <Style x:Key="Border" TargetType="Border">
+            <Setter Property="BorderBrush" Value="WhiteSmoke"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Margin" Value="28,188,28,308"/>
+            <Setter Property="Height" Value="220"/>
+        </Style>
+
+        <Style x:Key="RequirementResponsibility" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="DarkBlue"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Padding" Value="10 0 10 0"/>
+        </Style>
+
+        <Style
+            x:Key="LabelUrl" TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="432,425,32,271"/>
+            <Setter Property="Padding" Value="3,0,3,0"/>
+            <Setter Property="Width" Value="414"/>
+            <Setter Property="Height" Value="20"/>
+        </Style>
+
+        <Style x:Key="TextUrl" TargetType="TextBlock">
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Foreground" Value="IndianRed"></Setter>
             <Setter Property="VerticalAlignment" Value="Top"/>
@@ -112,30 +118,86 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        <Style x:Key="Border" TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="WhiteSmoke"/>
-            <Setter Property="BorderThickness" Value="2"></Setter>
-            <Setter Property="Padding" Value="10"></Setter>
-            <Setter Property="Focusable" Value="False"></Setter>
-            <Setter Property="CornerRadius" Value="5"></Setter>
+
+        <Style x:Key="DataGrid" TargetType="DataGrid">
+            <Setter Property="RowBackground">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                        <GradientStop Offset="1" Color="#E8F0FD"/>
+                        <GradientStop Offset="0.5" Color="#DEE4FA"/>
+                        <GradientStop Offset="0" Color="#D8E2EE"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="VerticalGridLinesBrush">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                        <GradientStop Offset="1" Color="#F6FCFF"/>
+                        <GradientStop Offset="0" Color="#F4FBFF"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HorizontalGridLinesBrush">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                        <GradientStop Offset="1" Color="#E8F0FD"/>
+                        <GradientStop Offset="0.5" Color="#DEE4FA"/>
+                        <GradientStop Offset="0" Color="#D8E2EE"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="Height" Value="194"/>
+            <Setter Property="Margin" Value="15,476,15,59"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Style.Triggers>
+                <Trigger Property="EnableColumnVirtualization" Value="true">
+                    <Setter Property="BorderBrush" Value="GreenYellow"/>
+
+                    <Setter Property="Opacity" Value="0"></Setter>
+                </Trigger>
+            </Style.Triggers>
         </Style>
-        <Style x:Key="SearchText" TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Foreground" Value="CornflowerBlue"></Setter>
+
+        <Style x:Key="ColumnHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                        <GradientStop Offset="1" Color="#72A2C6"/>
+                        <GradientStop Offset="0.5" Color="#76A8C3"/>
+                        <GradientStop Offset="0" Color="#739DC3"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0 0 1 0"/>
         </Style>
-        <Style x:Key="SearchData" TargetType="{x:Type TextBox}">
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="BorderBrush" Value="CornflowerBlue"></Setter>
-            <Setter Property="Background" Value="GhostWhite"></Setter>
-            <Setter Property="Padding" Value="5,2,5,2"></Setter>
-            <Setter Property="Foreground" Value="DarkGray"></Setter>
+
+        <Style TargetType="DataGridCell">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="true">
+                    <Setter Property="BorderBrush" Value="GreenYellow"/>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                                <GradientStop Offset="1" Color="#7AAE49"/>
+                                <GradientStop Offset="0" Color="#7DAF4E"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Opacity" Value="0.85"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
-        
-        <Style x:Key="DownloadVacancy" TargetType="{x:Type Button}">
+
+        <Style x:Key="DownloadVacancy" TargetType="Button">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Padding" Value="5,2,5,2"/>
             <Setter Property="Width" Value="240"/>
-            <Setter Property="Margin" Value=" 0,688,15,0"/>
+            <Setter Property="Margin" Value="0,683,15,0"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="Background">
@@ -145,77 +207,57 @@
                         <GradientStop Offset="1" Color="#9FD170"/>
                     </LinearGradientBrush>
                 </Setter.Value>
-                </Setter>
-            <Setter Property="Foreground" Value="White"></Setter>
+            </Setter>
+            <Setter Property="Foreground" Value="White"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="true">
-                    <Setter Property="Cursor" Value="Hand"></Setter>
-                    <Setter Property="Foreground" Value="Black"></Setter>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Foreground" Value="Black"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="RequirementResponsibility" TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Foreground" Value="DarkBlue"></Setter>
-            <Setter Property="TextWrapping" Value="Wrap"></Setter>
-            <Setter Property="Padding" Value="10 0 10 0"></Setter>
-        </Style>
+
     </Window.Resources>
 
-
-   
-
-
-    <!-- <GroupBox Header="Группа" Margin="5,5,5,241" Padding="5" RenderTransformOrigin="0.506,0.534"> -->
-    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <StackPanel Style="{StaticResource StackPanel}">
         <Grid Style="{StaticResource Grid}">
+            <TextBlock Style="{StaticResource SearchText}">Поиск вакансии:</TextBlock>
+            <TextBox x:Name="SearchData" Style="{StaticResource SearchData}" TextChanged="searchData_TextChanged"/>
 
-            <TextBlock HorizontalAlignment="Left" Style="{StaticResource SearchText}" Height="20" TextWrapping="Wrap" Margin="538,32,0,0" VerticalAlignment="Top" Width="101">Поиск вакансии:</TextBlock>
-            <TextBox x:Name="searchData" Style="{StaticResource SearchData}"  Height="23" Margin="648,23,28,670" TextChanged="searchData_TextChanged"/>
-
-
-            <Label x:Name="labelTitle" Style="{StaticResource Title}" VerticalAlignment ="Center" Margin="3,70,3,620" HorizontalContentAlignment="Center">
-                <TextBlock Text="{Binding ElementName= vacancyGrid, Path=CurrentItem.title}"></TextBlock>
+            <Label x:Name="LabelTitle" Style="{StaticResource Title}">
+                <TextBlock Text="{Binding ElementName= VacancyGrid, Path=CurrentItem.title}"/>
             </Label>
-            <Label x:Name="labelSalary" Style="{StaticResource Information}" HorizontalAlignment="Left"  HorizontalContentAlignment="Left" Margin="29,142,0,540" Width="272" Padding="3,0,3,0">
-                <TextBlock Text="{Binding StringFormat=Зарплата: {0}, ElementName=vacancyGrid, Path=CurrentItem.salary}" TextWrapping="Wrap"></TextBlock>
+            <Label x:Name="LabelSalary" Style="{StaticResource Salary}">
+                <TextBlock Text="{Binding StringFormat=Зарплата: {0}, ElementName=VacancyGrid, Path=CurrentItem.salary}" TextWrapping="Wrap"/>
             </Label>
-            <Label x:Name="labelEmployer" Style="{StaticResource Information}" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Margin="311,142,311,540" Width="272" Padding="3,0,3,0" >
-                <TextBlock Text="{Binding StringFormat=Работодатель: {0}, ElementName=vacancyGrid, Path=CurrentItem.employer}" TextWrapping="Wrap" HorizontalAlignment="Center"></TextBlock>
+            <Label x:Name="LabelEmployer" Style="{StaticResource Employer}">
+                <TextBlock Text="{Binding StringFormat=Работодатель: {0}, ElementName=VacancyGrid, Path=CurrentItem.employer}" TextWrapping="Wrap" HorizontalAlignment="Center"/>
             </Label>
-            <Label x:Name="LabelAddress" Style="{StaticResource Information}" HorizontalAlignment="Right"  HorizontalContentAlignment="Right" Margin="0,142,29,540" Width="272" Padding="3,0,3,0">
-                <TextBlock x:Name="labelAddressText" Text="{Binding StringFormat=Адрес: {0}, ElementName=vacancyGrid, Path=CurrentItem.address}" DataContext ="{Binding StringFormat=URL-адрес: {0}, ElementName=vacancyGrid, Path=CurrentItem.url}" TextWrapping="Wrap"/>
+            <Label x:Name="LabelAddress" Style="{StaticResource Address}">
+                <TextBlock x:Name="LabelAddressText" Text="{Binding StringFormat=Адрес: {0}, ElementName=VacancyGrid, Path=CurrentItem.address}" DataContext ="{Binding StringFormat=URL-адрес: {0}, ElementName=VacancyGrid, Path=CurrentItem.url}" TextWrapping="Wrap"/>
             </Label>
 
-
-            <Border Margin="28,188,28,308" Height="220" Style="{StaticResource Border}">
+            <Border Style="{StaticResource Border}">
                 <ScrollViewer>
-                    <TextBlock ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                       ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                       ScrollViewer.CanContentScroll="True">
-                                <TextBlock x:Name="textBlockRequirement" Style="{StaticResource RequirementResponsibility}" Text="{Binding StringFormat=Требования: {0}, ElementName=vacancyGrid, Path=CurrentItem.requirement}"></TextBlock>
-                                <LineBreak></LineBreak>
-                                <LineBreak></LineBreak>
-                                <TextBlock x:Name="textBlockResponsibility" Style="{StaticResource RequirementResponsibility}" Text= "{Binding StringFormat=Обязанности: {0}, ElementName=vacancyGrid, Path=CurrentItem.responsibility}"></TextBlock>
-                            </TextBlock>
+                    <TextBlock ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                               ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                               ScrollViewer.CanContentScroll="True"> 
+                        <TextBlock x:Name="TextBlockRequirement" Style="{StaticResource RequirementResponsibility}" Text="{Binding StringFormat=Требования: {0}, ElementName=VacancyGrid, Path=CurrentItem.requirement}"/> 
+                        <LineBreak/> 
+                        <LineBreak/> 
+                        <TextBlock x:Name="TextBlockResponsibility" Style="{StaticResource RequirementResponsibility}" Text= "{Binding StringFormat=Обязанности: {0}, ElementName=VacancyGrid, Path=CurrentItem.responsibility}"/> 
+                    </TextBlock>
                 </ScrollViewer>
             </Border>
 
-            <Label x:Name="labelUrl" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Margin="432,425,32,271" Width="414" Height="20" Padding="3,0,0,3">
-                <TextBlock x:Name="labelUrlText" Style="{StaticResource Url}" Text="{Binding StringFormat=Посмотреть подробную информацию: {0}, ElementName=vacancyGrid, Path=CurrentItem.url}" DataContext ="{Binding StringFormat=URL-адрес: {0}, ElementName=vacancyGrid, Path=CurrentItem.url}" MouseLeftButtonUp="LabelUrl_OnMouseLeftButtonUp"/>
+            <Label x:Name="LabelUrl" Style="{StaticResource LabelUrl}">
+                <TextBlock x:Name="LabelUrlText" Style="{StaticResource TextUrl}" Text="{Binding StringFormat=Посмотреть подробную информацию: {0}, ElementName=VacancyGrid, Path=CurrentItem.url}" DataContext ="{Binding StringFormat=URL-адрес: {0}, ElementName=VacancyGrid, Path=CurrentItem.url}" MouseLeftButtonUp="LabelUrl_OnMouseLeftButtonUp"/>
             </Label>
 
-            <DataGrid x:Name="vacancyGrid"  IsReadOnly="True" Style="{StaticResource DataGrid}" ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}" HeadersVisibility="Column" Height="194" Margin="15,476,15,59" AutoGeneratingColumn="OnAutoGeneratingColumn" CanUserAddRows="False"/>
-            <Button x:Name="DownloadVacancy" Style="{StaticResource DownloadVacancy}" Content="Загрузить новые вакансии с сайта"   Click="button_Click" Margin="0,683,15,0" />
-
+            <DataGrid x:Name="VacancyGrid" IsReadOnly="True" Style="{StaticResource DataGrid}" ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}" AutoGeneratingColumn="OnAutoGeneratingColumn"/>
+            
+            <Button x:Name="DownloadVacancy" Style="{StaticResource DownloadVacancy}" Content="Загрузить новые вакансии с сайта" Click="button_Click"/>
         </Grid>
     </StackPanel>
-    <!-- </GroupBox> -->
-
-
-
-
-
 </Window>
-

@@ -28,7 +28,7 @@ namespace VacanciesViewer
         {
             InitializeComponent();
             var dataSet = new DataBase().GetContent("");
-            vacancyGrid.ItemsSource = dataSet.Tables[0].DefaultView;
+            VacancyGrid.ItemsSource = dataSet.Tables[0].DefaultView;
 
         }
 
@@ -94,7 +94,7 @@ namespace VacanciesViewer
                 // label1.Text = @"Данные добавлены";
                 var dataSet = new DataBase().GetContent("");
 
-                vacancyGrid.ItemsSource = dataSet.Tables[0].DefaultView;
+                VacancyGrid.ItemsSource = dataSet.Tables[0].DefaultView;
             }
         }
 
@@ -127,7 +127,7 @@ namespace VacanciesViewer
 
         private void LabelUrl_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            Process.Start(labelUrlText.DataContext.ToString());
+            Process.Start(LabelUrlText.DataContext.ToString());
         }
 
 
@@ -141,14 +141,14 @@ namespace VacanciesViewer
 
         private void searchData_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var dataSet = new DataBase().GetContent(searchData.Text);
+            var dataSet = new DataBase().GetContent(SearchData.Text);
             if (dataSet.Tables[0].DefaultView.Count > 0)
             {
-                vacancyGrid.ItemsSource = dataSet.Tables[0].DefaultView;
+                VacancyGrid.ItemsSource = dataSet.Tables[0].DefaultView;
             }
             else
             {
-                MessageBox.Show("Ничего не найдено!");
+                MessageBox.Show(SearchData.Text);
             }
         }
     }
