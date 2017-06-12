@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VacanciesViewer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="756" Width="900" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Моя вакансия" Height="756" Width="900" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
     <Window.Resources>
         <Style x:Key="DataGrid">

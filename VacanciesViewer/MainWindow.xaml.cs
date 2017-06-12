@@ -103,7 +103,7 @@ namespace VacanciesViewer
 
             PropertyDescriptor propertyDescriptor = (PropertyDescriptor) e.PropertyDescriptor;
             e.Column.Header = propertyDescriptor.DisplayName;
-            if (propertyDescriptor.DisplayName == "requirement" || propertyDescriptor.DisplayName == "responsibility")
+            if (propertyDescriptor.DisplayName == "requirement" || propertyDescriptor.DisplayName == "responsibility" || propertyDescriptor.DisplayName == "Id")
             {
                 e.Cancel = true;
             }
