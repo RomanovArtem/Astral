@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VacanciesViewer
 {
-    class Vacancy
+    class VacancyObject
     {
         public string Title { get; set; }
         public string Salary { get; set; }

@@ -110,11 +110,12 @@
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="DataGridHeaderBorder.cs" />
+    <Compile Include="DataLoader.cs" />
     <Compile Include="RootObject.cs" />
     <Compile Include="Vacancy.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="ViewModel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -122,8 +123,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="VacancyObject.cs" />
+    <Compile Include="ViewModel.xaml.cs">
+      <DependentUpon>ViewModel.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

@@ -256,8 +256,8 @@
             </Label>
 
             <DataGrid x:Name="VacancyGrid" IsReadOnly="True" Style="{StaticResource DataGrid}" ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}" AutoGeneratingColumn="OnAutoGeneratingColumn"/>
-            
-            <Button x:Name="DownloadVacancy" Style="{StaticResource DownloadVacancy}" Content="Загрузить новые вакансии с сайта" Click="button_Click"/>
+
+            <Button x:Name="DownloadVacancy" Style="{StaticResource DownloadVacancy}" Content="Загрузить новые вакансии с сайта" Click="buttonDownloadClick"/>
         </Grid>
     </StackPanel>
 </Window>
